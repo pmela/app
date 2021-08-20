@@ -4,7 +4,7 @@
         <h2>
             Alunos
         </h2>
-        <button mat-raised-button color="primary">Adicionar Aluno</button>
+        <button mat-raised-button color="primary" (click)="abrirModal()">Adicionar Aluno</button>
     </div>
     <br>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

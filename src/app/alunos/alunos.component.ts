@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalAlunoComponent } from '../modal-aluno/modal-aluno.component';
 
 export interface Aluno {
   nome: string;
@@ -32,7 +34,11 @@ export class AlunosComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'nascimento', 'filiacao', 'residencia'];
   dataSource = ELEMENT_DATA;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
+
+  abrirModal() {
+    this.dialog.open(ModalAlunoComponent);
+  }
 
   ngOnInit(): void {
   }

@@ -11,14 +11,20 @@ import { AlunosComponent } from './alunos/alunos.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalAlunoComponent } from './modal-aluno/modal-aluno.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlunosComponent
+    AlunosComponent,
+    ModalAlunoComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +36,10 @@ import {MatListModule} from '@angular/material/list';
     MatTableModule,
     MatButtonModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
