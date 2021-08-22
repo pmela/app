@@ -25,7 +25,7 @@ export class DetalheAlunoComponent implements OnInit {
   data = {
     labels: ELEMENT_DATA.map(nota => nota.materia),
     datasets: [{
-      label: '# of Votes',
+      label: 'Notas',
       data: ELEMENT_DATA.map(nota => nota.nota),
       backgroundColor: [
         'rgba(255, 99, 132, 0.5)',

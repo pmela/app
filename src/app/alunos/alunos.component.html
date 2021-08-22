@@ -1,5 +1,6 @@
 <div class="container">
-
+    <br>
+    <br>
     <div fxLayout="row" fxLayoutAlign="space-between center">
         <h2>
             Alunos
@@ -37,7 +38,7 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"(click)="navegaDetalhe(row.id)"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navegaDetalhe(row.id)"></tr>
     </table>
 
 </div>

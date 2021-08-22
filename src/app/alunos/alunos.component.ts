@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ModalAlunoComponent } from '../modal-aluno/modal-aluno.component';
+import { AlunoService } from '../aluno.service';
 
 export interface Aluno {
   id: number;
@@ -18,15 +19,6 @@ export interface Nota {
   nota: number
 }
 
-const ELEMENT_DATA: Aluno[] = [
-  { id: 1, nome: "Pâmela", nascimento: new Date("2000-09-26"), filiacao: "Maria Neuza, Sebastiao de Araujo", residencia: "Rua tereza", notas: [] },
-  { id: 2, nome: "Alexandre", nascimento: new Date("2000-09-26"), filiacao: "Maria Neuza, Sebastiao de Araujo", residencia: "Rua tereza", notas: [] },
-  { id: 3, nome: "Yasmim", nascimento: new Date("2000-09-26"), filiacao: "Maria Neuza, Sebastiao de Araujo", residencia: "Rua tereza", notas: [] },
-  { id: 4, nome: "Gabriel", nascimento: new Date("2000-09-26"), filiacao: "Maria Neuza, Sebastiao de Araujo", residencia: "Rua tereza", notas: [] },
-  { id: 4, nome: "Juninho", nascimento: new Date("2000-09-26"), filiacao: "Maria Neuza, Sebastiao de Araujo", residencia: "Rua tereza", notas: [] },
-  { id: 5, nome: "Neuza", nascimento: new Date("2000-09-26"), filiacao: "Maria Neuza, Sebastiao de Araujo", residencia: "Rua tereza", notas: [] }
-];
-
 @Component({
   selector: 'app-alunos',
   templateUrl: './alunos.component.html',
@@ -35,9 +27,13 @@ const ELEMENT_DATA: Aluno[] = [
 export class AlunosComponent implements OnInit {
 
   displayedColumns: string[] = ['nome', 'nascimento', 'filiacao', 'residencia'];
-  dataSource = ELEMENT_DATA;
+  dataSource = [];
 
-  constructor(public dialog: MatDialog, private router: Router) { }
+  constructor(public dialog: MatDialog, private router: Router, private alunoService: AlunoService) {
+    this.alunoService.pegaAlunos().subscribe((alunosDjango)=>{
+      this.dataSource = alunosDjango;
+    })
+  }
 
   abrirModal() {
     this.dialog.open(ModalAlunoComponent, {

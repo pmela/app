@@ -19,6 +19,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { DetalheAlunoComponent } from './detalhe-aluno/detalhe-aluno.component';
 import { MatCardModule } from '@angular/material/card';
 import { ChartModule } from 'angular2-chartjs';
+import { HttpClientModule } from '@angular/common/http';
+import { AlunoService } from './aluno.service';
+
 
 
 
@@ -44,9 +47,10 @@ import { ChartModule } from 'angular2-chartjs';
     MatInputModule,
     MatFormFieldModule,
     MatCardModule,
-    ChartModule
+    ChartModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AlunoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
