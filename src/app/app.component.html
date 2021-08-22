@@ -4,11 +4,9 @@
   </button>
   <span>GERENCIAMENTO</span>
   <span class=" example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
+
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
+    <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
 
@@ -18,17 +16,17 @@
     <!-- <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="drawer.toggle()">menu</mat-icon> -->
     <h2> SISTEMA DE ALUNOS </h2>
     <mat-selection-list [multiple]="false">
-      <mat-list-option>
+      <mat-list-option (click)="navegaAluno()">
         Alunos
       </mat-list-option>
     </mat-selection-list>
   </mat-drawer>
 
   <div>
-    
-    <app-alunos>
 
-    </app-alunos>
+    <router-outlet>
+
+    </router-outlet>
 
 
 

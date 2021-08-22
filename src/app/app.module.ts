@@ -16,7 +16,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ModalAlunoComponent } from './modal-aluno/modal-aluno.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { DetalheAlunoComponent } from './detalhe-aluno/detalhe-aluno.component';
+import { MatCardModule } from '@angular/material/card';
+import { ChartModule } from 'angular2-chartjs';
 
 
 
@@ -24,7 +26,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   declarations: [
     AppComponent,
     AlunosComponent,
-    ModalAlunoComponent
+    ModalAlunoComponent,
+    DetalheAlunoComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatListModule,
     MatDialogModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCardModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
