@@ -21,12 +21,12 @@ export class DetalheAlunoComponent implements OnInit {
   dataSource = ELEMENT_DATA;
 
   type = 'bar';
-  
+
   data = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: ELEMENT_DATA.map(nota => nota.materia),
     datasets: [{
       label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
+      data: ELEMENT_DATA.map(nota => nota.nota),
       backgroundColor: [
         'rgba(255, 99, 132, 0.5)',
         'rgba(54, 162, 235, 0.5)',
@@ -49,8 +49,13 @@ export class DetalheAlunoComponent implements OnInit {
   options = {
     scales: {
       y: {
-        beginAtZero: true
-      }
+        beginAtZero: false
+      },
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
     }
   };
 
