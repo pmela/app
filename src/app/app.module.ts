@@ -21,6 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ChartModule } from 'angular2-chartjs';
 import { HttpClientModule } from '@angular/common/http';
 import { AlunoService } from './aluno.service';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -30,7 +31,8 @@ import { AlunoService } from './aluno.service';
     AppComponent,
     AlunosComponent,
     ModalAlunoComponent,
-    DetalheAlunoComponent
+    DetalheAlunoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

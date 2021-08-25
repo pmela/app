@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlunoService } from '../aluno.service';
 import { Nota } from '../alunos/alunos.component';
 
-const ELEMENT_DATA: Nota[] = [
-  { id: 1, materia: "Português", nota: 80 },
-  { id: 2, materia: "Matemática", nota: 90 },
-  { id: 3, materia: "Física", nota: 100 },
-];
+
 
 @Component({
   selector: 'app-detalhe-aluno',
@@ -17,35 +14,13 @@ const ELEMENT_DATA: Nota[] = [
 export class DetalheAlunoComponent implements OnInit {
 
   displayedColumns: string[] = ['materia', 'nota'];
-
-  dataSource = ELEMENT_DATA;
+  notas: Nota[] = [];
+  dataSource = [];
 
   type = 'bar';
 
-  data = {
-    labels: ELEMENT_DATA.map(nota => nota.materia),
-    datasets: [{
-      label: 'Notas',
-      data: ELEMENT_DATA.map(nota => nota.nota),
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(54, 162, 235, 0.5)',
-        'rgba(255, 206, 86, 0.5)',
-        'rgba(75, 192, 192, 0.5)',
-        'rgba(153, 102, 255, 0.5)',
-        'rgba(255, 159, 64, 0.5)'
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 1
-    }]
-  };
+  data = {};
+  
   options = {
     scales: {
       y: {
@@ -59,14 +34,45 @@ export class DetalheAlunoComponent implements OnInit {
     }
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute, private alunoService: AlunoService) {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.alunoService.pegaAluno(id).subscribe((aluno) => {
+      this.notas = aluno.notas;
+      this.dataSource = aluno.notas;
+      this.data = {
+        labels: this.notas.map(nota => nota.materia),
+        datasets: [{
+          label: 'Notas',
+          data: this.notas.map(nota => nota.nota),
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',
+            'rgba(255, 206, 86, 0.5)',
+            'rgba(75, 192, 192, 0.5)',
+            'rgba(153, 102, 255, 0.5)',
+            'rgba(255, 159, 64, 0.5)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      };
+    })
+  }
 
   ngOnInit(): void {
+
   }
 
   public get melhorNota(): number {
     let melhor = 0;
-    ELEMENT_DATA.forEach(nota => {
+    this.notas.forEach(nota => {
       if (nota.nota > melhor) {
         melhor = nota.nota
       }
@@ -76,7 +82,7 @@ export class DetalheAlunoComponent implements OnInit {
 
   public get piorNota(): number {
     let pior = 100;
-    ELEMENT_DATA.forEach(nota => {
+    this.notas.forEach(nota => {
       if (nota.nota < pior) {
         pior = nota.nota
       }
@@ -87,7 +93,7 @@ export class DetalheAlunoComponent implements OnInit {
   public get media(): number {
     let total = 0;
     let quantidade = 0;
-    ELEMENT_DATA.forEach((nota) => {
+    this.notas.forEach((nota) => {
       total += nota.nota;
       quantidade++;
     });

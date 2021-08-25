@@ -3,9 +3,14 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AlunoService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  pegaAlunos(){
-      return this.http.get<any>('http://127.0.0.1:8000/alunos/');
+  pegaAlunos() {
+    return this.http.get<any>('http://127.0.0.1:8000/alunos/');
   }
+
+  pegaAluno(id: number) {
+    return this.http.get<any>('http://127.0.0.1:8000/alunos/' + String(id) + '/');
+  }
+
 }
